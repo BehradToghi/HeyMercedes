@@ -20,7 +20,7 @@ elif [ "$1" = "audio" ]; then
 	echo Fetching News from: $serverAddress
 	curl $serverAddress
 else 
-	echo "ERROR: input is not defined! try audio or text modes"
+	echo "ERROR: input is not defined! Only audio and text modes are supported."
 fi
 
 
