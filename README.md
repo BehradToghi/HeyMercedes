@@ -1,4 +1,4 @@
-# Mercedes Benz Project - News Catcher 
+# Mercedes Benz Project - HeyMercedes! Give me the latest news!
 # Author: Behrad Toghi, http://behrad.toghi.net
 
 This is a project for my internship application to #HeyMercedes team at MBRDNA, CA, USA. This simple web service takes a text or audio file as input and uses the Houndify SDK alongside with New York Times API to acquire popular news items as a JSON file.

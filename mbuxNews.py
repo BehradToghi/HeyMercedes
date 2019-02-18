@@ -38,11 +38,12 @@ def index():
 def textCommand(textIn):
 
 	flag = HND.getHoundifyFlag(textIn, 'text')
-	
+
+	# Check if the received file contains the check case (NEWS.popular) or not	
 	if flag == True:
 		outJSON = NYT.getPopularNews()
 	else:
-		outJSON = {'ERROR': 'Input command is not defined, try GIVE ME NEWS instead!'} 
+		outJSON = {'ERROR': 'Input text command is not defined, try writing GIVE ME NEWS instead!'} 
 
 	return jsonify(outJSON)
 
@@ -58,10 +59,11 @@ def audioCommand(fileName):
 	fileAddress = "./test_audio/" + fileName
 	flag = HND.getHoundifyFlag(fileAddress, 'audio')		
 
+	# Check if the received file contains the check case (NEWS.popular) or not
 	if flag == True:
 		outJSON = NYT.getPopularNews()
 	else:
-		outJSON = {'ERROR': 'Input command is not defined, try GIVE ME NEWS instead!'} 
+		outJSON = {'ERROR': 'Input audio command is not defined, try saying GIVE ME NEWS instead!'} 
 
 	return jsonify(outJSON)
 

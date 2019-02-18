@@ -46,8 +46,10 @@ def getHoundifyTextFlag(textIn, ID, Key):
 	  'Longitude': -122.034832
 	}
 
+	# Set the Houndify Client
 	client = houndify.TextHoundClient(ID, Key, "test_user", requestInfo)
 
+	# Send the text query and receive response from Houndify custom application
 	response = client.query(QUERY)
 	responseDecoded = response.decode("utf-8")
 	responseJSON = json.loads(responseDecoded)
@@ -61,7 +63,7 @@ def getHoundifyAudioFlag(audioFile, ID, Key):
 	BUFFER_SIZE = 256
 
 	audio = wave.open(audioFile)
-	#some sanity checks
+	#some sanity checks for the audio file
 	if audio.getsampwidth() != 2:
 	  print("%s: wrong sample width (must be 16-bit)" % fname)
 	  sys.exit()
@@ -72,15 +74,18 @@ def getHoundifyAudioFlag(audioFile, ID, Key):
 	  print("%s: must be single channel (mono)" % fname)
 	  sys.exit()
 
+	# extract audio file attributes
 	audio_size = audio.getnframes() * audio.getsampwidth()
 	audio_duration = audio.getnframes() / audio.getframerate()
 	chunk_duration = BUFFER_SIZE * audio_duration / audio_size
 
 	# StreamingHoundClient method from Houndify API is being used.
+	# set a Houndify client
 	client = houndify.StreamingHoundClient(ID, Key, "test_user", enableVAD=False)
 	client.setLocation(37.386431, -122.034832) # We are at MBRDNA headquarters!
 	client.setSampleRate(audio.getframerate())
 
+	# Run the client
 	client.start()
 
 	while True:
@@ -89,6 +94,7 @@ def getHoundifyAudioFlag(audioFile, ID, Key):
 	  samples = audio.readframes(BUFFER_SIZE)
 	  if len(samples) == 0: break
 	  if client.fill(samples): break
+	# Finish the client and receieve respons/error
 	responseJSON = client.finish() # returns either final response or error
 
 	return responseJSON

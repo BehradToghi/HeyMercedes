@@ -15,10 +15,14 @@ def getPopularNews():
 	# Reading configs from CONFIGS.txt file
 	houndifyID, houndifyKey, nytKey, nytPeriod = getConfigs()
 	
+	# Creating the appropriate url to be sent to NYTimes API
 	url = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/' + nytPeriod + '.json?api-key=' + nytKey
+	
+	# Receiving popular news from NYTimes
 	r = requests.get(url)
 	newsJSON = r.json()
 
+	# Write the received JSON to a file
 	with open('NYTnews.json', 'w') as outfile:
 	  json.dump(newsJSON, outfile)
 	return newsJSON
