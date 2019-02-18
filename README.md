@@ -22,7 +22,8 @@ python3 MBUX_News.py
 You can run the application (runMBUX.sh) in two "audio" and "text" modes as follows:
 
 ```bash
-chmod +x ./runMBUX.sh <mode=audio/text> <name of audio file/input text in HTML format>
+chmod +x ./runMBUX.sh 
+./runMBUX.sh  <mode=audio/text> <name of audio file/input text in HTML format>
 ```
 
 Test audio files are saved in "test_audio" directory.
