@@ -7,6 +7,10 @@ This is a project for my internship application to #HeyMercedes team at MBRDNA, 
 ## Instal the Dependencies 
 This implementation runs on Flask web platform for Python 3.x
 
+```bash
+sudo pip3 install Flask
+```
+
 ## Running the module
 
 Please download the repository. Activate the web service by running:
