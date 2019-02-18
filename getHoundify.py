@@ -7,19 +7,23 @@ import sys
 import json
 import time
 import wave
+from utils import getConfigs
+
 
 # This function determines what is the operation mode (text/audio) and sets a flag
 # If the received JSON from Houndify contains the checkCase string, the flag is set to True
 def getHoundifyFlag(inputArg, type):
 	checkCase = "NEWS.popular"
 	flag = False
-	CLIENT_ID = "ZaxfUo7UCckzXLQaHYm0Tg=="
-	CLIENT_KEY = "q6AZT6ExsEGd_sPc_VacJE9ySj2pub6yCFz4Ys_-u44cvnOCoHJacBIaXq6TMgRpoSme1NQLEVx91zyWIydLsA=="
 
+	# Reading configs from CONFIGS.txt file
+	houndifyID, houndifyKey, nytKey, nytPeriod = getConfigs()
+	
+	# Decide if the input is text or audio
 	if type == 'text':
-		responseJSON = getHoundifyTextFlag(inputArg, CLIENT_ID, CLIENT_KEY)
+		responseJSON = getHoundifyTextFlag(inputArg, houndifyID, houndifyKey)
 	elif type == 'audio':
-		responseJSON = getHoundifyAudioFlag(inputArg, CLIENT_ID, CLIENT_KEY)
+		responseJSON = getHoundifyAudioFlag(inputArg, houndifyID, houndifyKey)
 	else:		
 	# 	print ("data type is invalid, it should be either text or audio")
 		responseJSON = list({"AllResults": "ERROR"})

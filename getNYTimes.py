@@ -7,15 +7,18 @@ import sys
 import json
 import requests
 from flask import Flask, jsonify, request
+from utils import getConfigs
 
-#Connect to NYTimes API to acquire the latest popular news in the last week.
-#This time period can be changed or even set as a configurable parameter.
+#Connect to NYTimes API to acquire the latest popular news in the rime period.
 def getPopularNews():
-  url = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=CpOKjWKKSKAtaXrmusZKXsO6GQKWMZaa'
-  r = requests.get(url)
-  newsJSON = r.json()
+	
+	# Reading configs from CONFIGS.txt file
+	houndifyID, houndifyKey, nytKey, nytPeriod = getConfigs()
+	
+	url = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/' + nytPeriod + '.json?api-key=' + nytKey
+	r = requests.get(url)
+	newsJSON = r.json()
 
-  with open('NYTnews.json', 'w') as outfile:
-      json.dump(newsJSON, outfile)
-  
-  return newsJSON
+	with open('NYTnews.json', 'w') as outfile:
+	  json.dump(newsJSON, outfile)
+	return newsJSON

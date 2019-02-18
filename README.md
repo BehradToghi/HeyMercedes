@@ -10,13 +10,19 @@ This implementation runs on Flask web platform for Python 3.x
 ```bash
 sudo pip3 install Flask
 ```
+## Setting Configs
+Please open the CONFIGS.txt file to change client keys and IDs related to (Houndify) and (NYTimes) APIs. The popular news period is also configurable in days (allowed values: 1, 7, 30 days)
+
+```bash
+CONFIGS.txt
+```
 
 ## Running the module
 
 Please download the repository. Activate the web service by running:
 
 ```bash
-python3 MBUX_News.py 
+python3 mbuxNews.py 
 ```
 
 You can run the application (runMBUX.sh) in two "audio" and "text" modes as follows:
